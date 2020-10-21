@@ -6,25 +6,41 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 var mongoose = require('mongoose')
 const upload = require('../services/file-upload')
-const ip = require('ip')
+const publicIp = require('public-ip')
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const { checkAuthenticated, checkNotAuthenticated } = require('../middleware/auth')
 
 // Home routes
 router.get('/', async (req, res) => {
     try {
-        const ipAddress = ip.address()
-        console.log(ipAddress)
-        let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" + ipAddress
-    // Send a message to a telegram bot 
-    https.get(url, (resp) => {
-        let data = '';
-        resp.on('data', (chunk) => {
-          data += chunk;
-        });
-        resp.on('end', () => {
-        });
-      }).on("error", (err) => {
-      });
+    var ipAdress = await publicIp.v4()
+    let url = 'https://api.ipgeolocation.io/ipgeo?apiKey=e1648b455b2a41648df7c6ad626f66a5&ip=' + ipAdress
+    const Http = new XMLHttpRequest()
+    Http.open("GET", url)
+    Http.send()
+    Http.onload = () => {
+        var text = Http.responseText.toString()
+        var textJSON = JSON.parse(text)
+        var ip = textJSON.ip
+        var district = textJSON.district
+        var city = textJSON.city
+        var time = textJSON.time_zone.current_time
+        let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" 
+                    + ip + "%0D%0A"
+                    + district + "%0D%0A"
+                    + city + "%0D%0A"
+                    + time + "%0D%0A"
+                    https.get(url, (resp) => {
+                        let data = '';
+                        resp.on('data', (chunk) => {
+                            data += chunk;
+                        });
+                        resp.on('end', () => {
+                        });
+                    }).on("error", (err) => { });
+    }
+        // Send a message to a telegram bot 
+        
         await res.render('home', {
             name: req.session.passport.user.name
         })
@@ -168,22 +184,23 @@ router.get('/property/delete', checkAuthenticated, async (req, res) => {
 })
 
 router.post('/property/delete', checkAuthenticated, async (req, res) => {
-        const ownerEmail = req.session.passport.user.email
-        const propertyId = req.query.id
-        const property = await Property.deleteOne({ _id: req.body._id }).exec()
-        await res.redirect('/properties')
+    const ownerEmail = req.session.passport.user.email
+    const propertyId = req.query.id
+    const property = await Property.deleteOne({ _id: req.body._id }).exec()
+    await res.redirect('/properties')
 })
 
-router.get('/about', async(req, res) => {
+router.get('/about', async (req, res) => {
     await res.render('about')
 })
 
-router.get('/contact', async(req, res) => {
+router.get('/contact', async (req, res) => {
     await res.render('contact')
 })
 
 const https = require('https')
-router.post('/contact', async(req, res) => {
+const { type } = require('os')
+router.post('/contact', async (req, res) => {
     const title = req.body.title
     const message = req.body.message
     let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" + title + "%0D%0A" + message
@@ -191,12 +208,12 @@ router.post('/contact', async(req, res) => {
     https.get(url, (resp) => {
         let data = '';
         resp.on('data', (chunk) => {
-          data += chunk;
+            data += chunk;
         });
         resp.on('end', () => {
         });
-      }).on("error", (err) => {
-      });
+    }).on("error", (err) => {
+    });
 
     await res.render('contact')
 })
