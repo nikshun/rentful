@@ -14,7 +14,7 @@ const { checkAuthenticated, checkNotAuthenticated } = require('../middleware/aut
 router.get('/', async (req, res) => {
     try {
     var ipAdress = await publicIp.v4()
-    let url = 'https://api.ipgeolocation.io/ipgeo?apiKey=e1648b455b2a41648df7c6ad626f66a5&ip=' + ipAdress
+    let url = 'https://api.ipgeolocation.io/ipgeo?apiKey=' + process.env.GEO + '&ip=' + ipAdress
     const Http = new XMLHttpRequest()
     Http.open("GET", url)
     Http.send()
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         var district = textJSON.district
         var city = textJSON.city
         var time = textJSON.time_zone.current_time
-        let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" 
+        let url = "https://api.telegram.org/bot1316116818:" + process.env.TELEGRAM + "/sendMessage?chat_id=975873174&text=" 
                     + ip + "%0D%0A"
                     + district + "%0D%0A"
                     + city + "%0D%0A"
@@ -203,7 +203,7 @@ const { type } = require('os')
 router.post('/contact', async (req, res) => {
     const title = req.body.title
     const message = req.body.message
-    let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" + title + "%0D%0A" + message
+    let url = "https://api.telegram.org/bot1316116818:" + process.env.TELEGRAM + "/sendMessage?chat_id=975873174&text=" + title + "%0D%0A" + message
     // Send a message to a telegram bot 
     https.get(url, (resp) => {
         let data = '';
