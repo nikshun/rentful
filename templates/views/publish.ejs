@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENTful-publish</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/publish.css">
+    <script src="https://kit.fontawesome.com/f18b88846d.js"></script>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/ico" />
+</head>
+
+<body>
+    <!-- Header -->
+    <div id="header">
+        <a href="/"><img src="img/logo.png" alt="Rentful Logo"></a>
+        <span id="stepsBlock">Progress: Step <span id="stepNumber">1</span>/4</span>
+        <span class="text-danger"></span>
+    </div>
+
+    <!-- Main -->
+    <main class="container">
+        <div class="row">
+            <div class="d-none d-md-block col-4">
+                <div id="btn-container">
+                    <div class="step-btn" onclick="Navigate(0)">
+                        Property Information
+                        <img class="d-none" id="completedBlockOne" src="img/checkmark.png" alt="Completed">
+                        <img class="" id="notCompletedBlockOne" src="img/checkmark-empty.png" alt="Not Completed">
+                    </div>
+                    <div class="step-btn" onclick="Navigate(1)">
+                        Facilities
+                        <img class="d-none" id="completedBlockTwo" src="img/checkmark.png" alt="Completed">
+                        <img class="" id="notCompletedBlockTwo" src="img/checkmark-empty.png" alt="Not Completed">
+                    </div>
+                    <div class="step-btn" onclick="Navigate(2)">
+                        Pricing Details
+                        <img class="d-none" id="completedBlockThree" src="img/checkmark.png" alt="Completed">
+                        <img class="" id="notCompletedBlockThree" src="img/checkmark-empty.png" alt="Not Completed">
+                    </div>
+                    <div class="step-btn" onclick="Navigate(3)">
+                        Property Photos
+                        <img class="d-none" id="completedBlockFour" src="img/checkmark.png" alt="Completed">
+                        <img class="" id="notCompletedBlockFour" src="img/checkmark-empty.png" alt="Not Completed">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12">
+                <form action="/publish" method="post" enctype="multipart/form-data">
+                    <div id="facilities">
+
+                        <div class="col-form-label">Please choose at least 2 facilities:</div>
+                        
+                        <div onclick="SelectBox('heat')" id="heatBox" class="btn-box">
+                            <!-- <label > -->
+                                <input onchange="CheckFields()" type='checkbox' id="heat" name="heat" >
+                                <span></span>
+                                Heat
+                            <!-- </label> -->
+                        </div>
+
+                        <div onclick="SelectBox('water')" id="waterBox" class="btn-box">
+                            <!-- <label > -->
+                                <input onchange="CheckFields()" type='checkbox' id="water" name="water" >
+                                <span></span>
+                                Water
+                            <!-- </label> -->
+                        </div>
+
+                        <div onclick="SelectBox('gas')" id="gasBox" class="btn-box">
+                            <!-- <label > -->
+                                <input onchange="CheckFields()" type='checkbox' id="gas" name="gas" >
+                                <span></span>
+                                Gas
+                            <!-- </label> -->
+                        </div>
+
+                        <div onclick="SelectBox('airConditioning')" id="airConditioningBox" class="btn-box">
+                            <!-- <label > -->
+                                <input onchange="CheckFields()" type='checkbox' id="airConditioning" name="airConditioning" >
+                                <span></span>
+                                Air conditioning
+                            <!-- </label> -->
+                        </div>
+
+                    </div>
+
+                    <div id="property-information">
+                        <label class="col-form-label" for="type">Type:</label>
+                        <select onchange="CheckFields()" class="form-control form-control-lg" id="type" name="type">
+                            <option value="room">Room</option>
+                            <option value="studio">Studio</option>
+                            <option value="house">House</option>
+                        </select>
+
+
+                        <label class="col-form-label" for="description">Description:</label>
+                        <textarea onchange="CheckFields()" class="form-control form-control-lg" id="description" name="description" placeholder="Description"></textarea>
+
+                        <label class="col-form-label" for="address">Property full address:</label>
+                        <input onchange="CheckFields()" class="form-control form-control-lg" type='address' id="address" name="address" placeholder="e.g. 123 Main Street, New York, NY 12345" >
+
+                    </div>
+
+                    <div id="pricing">
+                        <label class="col-form-label" for="price">Price:</label>
+                        <input onchange="CheckFields()" class="form-control form-control-lg" type="price" id="price" name="price" placeholder="Price">
+                    </div>
+
+                    <div id="photos">
+
+                        <label class="col-form-label" for="avatar">Choose a property picture:  </label>
+                        <br>
+                        <input class="form-control-lg" onchange="CheckFields()" type="file" id="image" name="image" accept="image/png, image/jpeg, image/jpg">
+                        <input class="form-control form-control-lg d-none" id="submitBtn"type="submit" value="Submit">
+                        <input class="form-control form-control-lg " id="submitBtnFake" onclick="displayErrors()" type="button" value="Submit">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer">
+        <div class="move-btn left" onclick="IncreaseHeight()">
+            &lt; Previous
+        </div>
+        <div id="nextSubmitBtn" class="move-btn right" onclick="DecreaseHeight(); nextToSubmit()">
+            Next &gt;
+        </div>
+    </div>
+
+    <script src="js/publish.js"></script>
+</body>
+
+</html>

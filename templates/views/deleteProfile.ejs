@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENTful</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/publish.css">
+    <script src="https://kit.fontawesome.com/f18b88846d.js"></script>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/ico" />
+</head>
+<body>
+    
+    <div class="card" style="padding:30px">
+        <form action="/profile/delete" method="post" >
+            <h1 class="text-danger"><b>Delete the profile <%= name %>?</b></h1> <br>
+            <input style="width:90px; margin:auto; margin-top: 30px; font-weight: 600;" class="card-link" id="submitBtn" type="submit"value="Delete">
+            <button style="width:90px; margin:auto; margin-top: 30px; " onclick="window.location.href = '/properties'" class="card-link" >Back</button>
+        </form>
+        
+    </div>
+</body>

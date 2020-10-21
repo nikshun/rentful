@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENTful</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="https://kit.fontawesome.com/f18b88846d.js"></script>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/ico" />
+</head>
+
+<body>
+    <%- include('../partials/header.ejs') -%>
+        <main>
+
+            <div id="main-info">
+                <!-- Left text -->
+                <div id="main-info-headings" class="container">
+                    <div class="row">
+                        <h1>We help you find a home away from home</h1>
+                    </div>
+                    <div class="row">
+                        <p>Save time, energy and money – find and book your new home 100% online.</p>
+                    </div>
+
+                    <!-- Dropdown -->
+                    <div class="row">
+                        <div class="my-dropdown">
+                            <div class="my-dropdown-select" onclick="showCityList()">
+                                <span id="selectCityField" class="select">Select a city</span>
+                                <i class="fa fa-angle-down icon"></i>
+                            </div>
+                            <div class="my-dropdown-list" onclick="hideCityList()">
+                                <div class="my-dropdown-list-item" onclick="selectCity('Waterloo')">Waterloo</div>
+                                <div class="my-dropdown-list-item" onclick="selectCity('Toronto')">Toronto</div>
+                                <div class="my-dropdown-list-item" onclick="selectCity('New York')">New York</div>
+                            </div>
+                        </div>
+                        <a href="#" onclick="goToProperties()" id="search-button">
+                            Search
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Carousel -->
+                <div id="carouselExampleControls" class="carousel slide carousel-fade my-carousel" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" id="imgOne">
+                            <img src="img/room1.jpg" class="d-block" alt="Room 1">
+                        </div>
+                        <div class="carousel-item" id="imgTwo">
+                            <img src="img/room2.jpg" class="d-block" alt="Room 2">
+                        </div>
+                        <div class="carousel-item" id="imgThree">
+                            <img src="img/room3.jpg" class="d-block" alt="Room 3">
+                        </div>
+                        <div class="carousel-item" id="imgFour">
+                            <img src="img/room4.jpg" class="d-block" alt="Room 4">
+                        </div>
+                    </div>
+
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+                </div>
+
+                <!-- Select city script -->
+                <script src="js/home.js"></script>
+            </div>
+
+        </main>
+
+
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
+</body>
+
+</html>

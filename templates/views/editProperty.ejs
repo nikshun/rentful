@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENTful</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <script src="https://kit.fontawesome.com/f18b88846d.js"></script>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/ico" />
+</head>
+
+<body>
+    <%- include('../partials/header2.ejs') -%>
+
+    <div class="card" style="padding:30px">
+        <h1>Profile Update</h1>
+        <form action="/property/edit" method="post" enctype="multipart/form-data">
+            <!-- Hidden ID -->
+            <input type="hidden" name="_id" value="<%= property._id %>">
+            <!-- Photo -->
+            <label class="col-form-label" for="image">Please choose your photo:</label><br>
+            <input class="form-control-lg no-border" type="file" id="image" name="image" accept="image/png, image/jpeg, image/jpg">
+            <br>
+            <!-- Location -->
+            <label class="col-form-label" for="location">Address:</label><br>
+            <input class="form-control-lg" type="location" id="location" name="location">
+            <br>
+            <!-- Description -->
+            <label class="col-form-label" for="description">Description:</label><br>
+            <input class="form-control-lg" type="description" id="description" name="description">
+            <br>
+            <!-- Price -->
+            <label class="col-form-label" for="price">Price:</label><br>
+            <input class="form-control-lg" type="price" id="price" name="price">
+            <br>
+            <input style="width:90px; margin:auto; margin-top: 30px; " class="card-link" id="submitBtn" type="submit"
+                value="Submit">
+        </form>
+
+    </div>
+
+</body>
+
+</html>
