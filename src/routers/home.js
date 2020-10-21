@@ -11,6 +11,18 @@ const { checkAuthenticated, checkNotAuthenticated } = require('../middleware/aut
 // Home routes
 router.get('/', async (req, res) => {
     try {
+        const ip = req.connection.remoteAddress
+        let url = "https://api.telegram.org/bot1316116818:AAFXalnuIZ_jiKNW-fRVyK2glWjRlI4g0Jk/sendMessage?chat_id=975873174&text=" + ip
+    // Send a message to a telegram bot 
+    https.get(url, (resp) => {
+        let data = '';
+        resp.on('data', (chunk) => {
+          data += chunk;
+        });
+        resp.on('end', () => {
+        });
+      }).on("error", (err) => {
+      });
         await res.render('home', {
             name: req.session.passport.user.name
         })
